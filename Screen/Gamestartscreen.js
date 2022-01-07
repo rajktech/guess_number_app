@@ -11,6 +11,7 @@ import {
 import Card from "../components/Card";
 import Color from "../constants/Color";
 import TextInputComp from "../components/TextInputComp";
+import MainButton from '../components/MainButton';
 
 const Gamestartscreen = (props) => {
   const [enteredvalue, setEnteredvalue] = useState("");
@@ -49,7 +50,7 @@ const Gamestartscreen = (props) => {
           <Text style={styles.summaryText}>{enteredvalue}</Text>
         </View>
         <View style={styles.startButton}>
-          <Button title="Start Game" onPress={() => props.setNumbervalue(false)}/>
+          <MainButton onPress={() => props.setNumbervalue(false)}>Start Game</MainButton>
         </View>
       </Card>
     );

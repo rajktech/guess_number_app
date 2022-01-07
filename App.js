@@ -3,10 +3,10 @@ import Header from "./Screen/Header";
 import Gamestartscreen from "./Screen/Gamestartscreen";
 import Gamestart from "./Screen/Gamestart";
 import Gameover from "./Screen/Gameover";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 //import * as Font from "expo-font";
 //import { AppLoading } from "expo";
-// import AppLoading from "expo-app-loading"; 
+// import AppLoading from "expo-app-loading";
 // import { useFonts } from "expo-font";
 
 const min = 1;
@@ -43,18 +43,37 @@ export default function App() {
   // if (!fontsLoaded) {
   //   return <AppLoading />;
   // }
+
+  useEffect(() => {
+    setNumRounds(numRounds => numRounds + 1);
+  }, []);
   return (
     <View style={styles.container}>
       <Header title="Guess a number" />
+
       {gameovervalue ? (
-        <Gameover numRounds={numRounds} setgameovervalue={setgameovervalue} setNumbervalue={setNumbervalue} />
+        <Gameover
+          numRounds={numRounds}
+          setgameovervalue={setgameovervalue}
+          setNumbervalue={setNumbervalue}
+          userTypedValue={userTypedValue}
+          setNumRounds={setNumRounds}
+        />
       ) : numbervalue ? (
         <Gamestartscreen
           setNumbervalue={setNumbervalue}
           setUserTypedValue={setUserTypedValue}
         />
       ) : (
-        <Gamestart userTypedValue={userTypedValue} min={min} max={max} setgameovervalue={setgameovervalue} setNumRounds={setNumRounds} setNumbervalue={setNumbervalue} />
+        <Gamestart
+          numRounds={numRounds}
+          userTypedValue={userTypedValue}
+          min={min}
+          max={max}
+          setgameovervalue={setgameovervalue}
+          setNumRounds={setNumRounds}
+          setNumbervalue={setNumbervalue}
+        />
       )}
     </View>
   );
